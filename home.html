@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+          background-color: #555;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          opacity: 0.8;
+          position: fixed;
+          bottom: 23px;
+          right: 28px;
+          width: 280px;
+        }
+        
+        /* The popup form - hidden by default */
+        .form-popup {
+          display: none;
+          position: fixed;
+          bottom: 0;
+          right: 15px;
+          border: 3px solid #f1f1f1;
+          z-index: 9;
+        }
+        
+        /* Add styles to the form container */
+        .form-container {
+          max-width: 300px;
+          padding: 10px;
+          background-color: white;
+        }
+        
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+          width: 100%;
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          border: none;
+          background: #f1f1f1;
+        }
+        
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+        
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+          background-color: #04AA6D;
+          color: white;
+          padding: 16px 20px;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+          margin-bottom:10px;
+          opacity: 0.8;
+        }
+        
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+          background-color: red;
+        }
+        
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+          opacity: 1;
+        }
+        </style>
+    <title>Khôi</title>
+</head>
+<body>
+    <div class="container"> 
+        <h1 class="text-center">Trần Nguyên Khôi</h1> 
+        <div class="container" style="justify-content: center; align-items: center;"> 
+         <div class="row profile">        
+          <div class="col-md-3">          
+           <div class="profile-sidebar">                          
+            <div class="profile-userpic">                 <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/305502647_3336696786606857_6450485150778308934_n.jpg?stp=c161.0.414.414a_cp6_dst-jpg_p552x414&_nc_cat=111&ccb=1-7&_nc_sid=da31f3&_nc_ohc=a-54LIUoOEYAX-eIi3T&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfDkvsyWMBPoE-boOGW58M_Nphmj_wSHTQ1XaZuCoz7nSw&oe=63736285" class="img-responsive" alt="Thông tin cá nhân">               
+            </div>                                            
+            <div class="profile-usertitle">                   
+             <div class="profile-usertitle-name">                     22/02/2000                 </div>                  
+             <div class="profile-usertitle-job">                      Java Backend Developer                   </div>              
+            </div>                                                
+            <div class="profile-userbuttons">  
+                     
+             <button type="button" onclick="location.href='https://facebook.com/nguyenkhoi2202'" class="btn btn-primary btn-sm">Facebook</button>                  
+             <button type="button" onclick="location.href='https://zalo.me/0942691091'" class="btn btn-success btn-sm">  Zalo  </button>
+             <button type="button" onclick="openForm()" class="btn btn-success btn-sm">  Tiểu sử cá nhân  </button>                
+            </div>                                            
+            <div class="profile-usermenu">                    
+             <ul class="nav"><div class="logo_menuchinh" style="float:left; padding-top:5px; padding-left:10px; color:#fff; margin-left:auto; margin-right:auto; text-align=center; line-height:40px; font-size:16px;font-weight:bold;font-family:Arial">HOCWEBGIARE.COM</div><div class="menu-icon"><span>  .</span></div>                      
+              <li class="active"> <i class="glyphicon glyphicon-info-sign"></i>                           Trang thông tin cá nhân của khôi </a>                     
+              </li>           
+              <li>   <a href="https://linktr.ee/nguyenkhoi2202"> <i class="glyphicon glyphicon-heart"></i> Thông tin mạng xã hội </a>                     
+              </li>  
+             
+              <div class="form-popup" id="myForm">
+                <form action="/action_page.php" class="form-container">
+                  <h1>Tiểu sử</h1>
+              
+                 <p>
+                    Tôi là khôi, một người hướng nội, khá ít nói. Tôi là 1 Developer backend Java,
+                    sử dụng spring boot để viết Restful bên phía server. Sở thích tôi là xem hoạt hình, xem hài, 
+                    thỉnh thoảng chơi game. Trước đây tôi không thích đọc sách nhưng vì 1 vài biến cố
+                    về giao tiếp xã hội khiến tôi mất đi 1 mối quan hệ mà tôi coi là quan trọng. Từ đó, tôi 
+                    chọn đọc sách nhiều hơn để hiểu hơn về cuộc sống đa dạng phức tạp này. 
+                 </p>
+              
+                 
+                  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+              </div>
+              <script>
+                function openForm() {
+                  document.getElementById("myForm").style.display = "block";
+                }
+                
+                function closeForm() {
+                  document.getElementById("myForm").style.display = "none";
+                }
+                </script>                       
+              <li>  <a href="https://www.messenger.com/t/100007997043046"> <i class="glyphicon glyphicon-envelope"></i> Nhắn tin </a>                       
+              </li>                   
+             </ul>                
+            </div>                            
+           </div>     
+          </div>      
+          <div class="col-md-9"> 
+           <div class="profile-content">             Chào mừng Bạn đến với trang thông tin cá nhân của khôi </div>     
+          </div>  
+         </div>
+        </div> 
+       </div>
+</body>
+</html>
